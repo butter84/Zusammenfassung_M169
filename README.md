@@ -139,7 +139,7 @@ Das Verzeichnis samplesite als Volume einbinden, ebenso das Apache2-Logfile -> Ã
 
 `docker run -d -p 8443:443 -p 8085:80 --name webprojekt -v /home/vmadmin/samplesite/:/var/www/html -v /home/vmadmin/:/var/log/apache2 -h webtest webprojekt`
 
-##Dockerfile
+'Dockerfile?
 FROM ubuntu:20.04
 
 LABEL maintainer "oliver.lux@gbssg.ch"
