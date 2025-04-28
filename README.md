@@ -1,6 +1,6 @@
 # Zusammenfassung_M169
 
-**<u>Sie können einen Docker-Container ausführen und interaktiv verwenden.<u>**
+**<u>Sie können einen Docker-Container ausführen und interaktiv verwenden.</u>**
 
 docker run -it ubuntu bash
 
