@@ -138,3 +138,19 @@ docker run -d -p 8443:443 -p 8085:80 --name webprojekt webprojekt
 Das Verzeichnis samplesite als Volume einbinden, ebenso das Apache2-Logfile -> Änderungen können im Host unter samplesite/ vorgenommen werden
 
 `docker run -d -p 8443:443 -p 8085:80 --name webprojekt -v /home/vmadmin/samplesite/:/var/www/html -v /home/vmadmin/:/var/log/apache2 -h webtest webprojekt`
+
+##Dockerfile
+FROM ubuntu:20.04
+
+LABEL maintainer "oliver.lux@gbssg.ch"
+LABEL description "Webprojekt"
+
+ENV TZ="Europe/Berlin" APACHE_RUN_USER=www-data APACHE_RUN_GROUP=www-data APACHE_LOG_DIR=/var/log/apache2
+
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && apt-get update && apt-get install -y apache2 && apt-get -y clean && rm -r /var/cache/apt /var/lib/apt/lists/* && a2ensite default-ssl && a2enmod ssl
+
+EXPOSE 80 443
+
+COPY samplesite/ /var/www/html
+
+CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
