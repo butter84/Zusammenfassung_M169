@@ -121,3 +121,20 @@ Bearbeiten
 environment:
   MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
 Oder secrets verwenden (noch sicherer, komplexer).
+
+
+
+**MINI Projekt**
+
+## Docker Image builden
+Im Verzeichnis den Ordner samplesite/ erstellen und in diesem Ordner die HTML/CSS etc. Inhalte einfügen
+
+`docker build -t webprojekt .`
+
+## Docker Container starten
+docker run -d -p 8443:443 -p 8085:80 --name webprojekt webprojekt
+
+## Docker Container starten (sinnvoller)
+Das Verzeichnis samplesite als Volume einbinden, ebenso das Apache2-Logfile -> Änderungen können im Host unter samplesite/ vorgenommen werden
+
+`docker run -d -p 8443:443 -p 8085:80 --name webprojekt -v /home/vmadmin/samplesite/:/var/www/html -v /home/vmadmin/:/var/log/apache2 -h webtest webprojekt`
